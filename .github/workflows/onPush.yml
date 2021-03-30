@@ -1,0 +1,13 @@
+name: Push (CI)
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Variable Output
+        run: |
+          echo ${{ github.event.repository.name }}
