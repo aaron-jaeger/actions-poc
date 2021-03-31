@@ -11,19 +11,4 @@ jobs:
       - name: Variable Output
         run: |
           echo ${{ github.event.repository.name }}
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: "14.x"
-      - name: Install semantic-release
-        run: |
-          npm install -g semantic-release @semantic-release/{git,changelog,exec}
-      - name:
-        run: |
-          semantic-release
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+  
