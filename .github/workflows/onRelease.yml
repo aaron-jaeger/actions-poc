@@ -1,9 +1,11 @@
 name: Release
 on:
   release:
+    types: [released]
 jobs:
   deploy_internal_dev:
     name: Deploy Internal - Dev
+    runs-on: ubuntu-latest
     environment: 
       name: internal-dev
     steps:
@@ -11,6 +13,7 @@ jobs:
         run: echo "Internal Dev"
   deploy_internal_test:
     name: Deploy Internal - Test
+    runs-on: ubuntu-latest
     needs: deploy_internal_dev
     environment: 
       name: internal-test
@@ -19,6 +22,7 @@ jobs:
         run: echo "Internal Test"
   deploy_tenant_dev:
     name: Deploy Tenant - Dev
+    runs-on: ubuntu-latest
     needs: deploy_internal_test
     environment: 
       name: tenant-dev
@@ -27,6 +31,7 @@ jobs:
         run: echo "Tenant Dev"
   deploy_tenant_test:
     name: Deploy Tenant - Test
+    runs-on: ubuntu-latest
     needs: deploy_internal_test
     environment: 
       name: tenant-test
@@ -35,6 +40,7 @@ jobs:
         run: echo "Tenant Test"
   deploy_tenant_prod:
     name: Deploy Tenant - Prod
+    runs-on: ubuntu-latest
     needs: [deploy_tenant_dev, deploy_tenant_test]
     environment: 
       name: tenant-prod
