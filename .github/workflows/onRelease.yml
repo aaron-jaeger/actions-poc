@@ -7,38 +7,38 @@ jobs:
     name: Deploy Internal - Dev
     environment: 
       name: internal-dev
-      steps:
-        - name: Deploy Internal Dev
-        - run: echo "Internal Dev"
+    steps:
+      - name: Deploy Internal Dev
+        run: echo "Internal Dev"
   deploy_internal_test:
     name: Deploy Internal - Test
     needs: deploy_internal_dev
     environment: 
       name: internal-test
-      steps:
-        - name: Deploy Internal Test
-        - run: echo "Internal Test"
+    steps:
+      - name: Deploy Internal Test
+        run: echo "Internal Test"
   deploy_tenant_dev:
     name: Deploy Tenant - Dev
     needs: deploy_internal_test
     environment: 
       name: tenant-dev
-      steps:
-        - name: Deploy Tenant Dev
-        - run: echo "Tenant Dev"
+    steps:
+      - name: Deploy Tenant Dev
+        run: echo "Tenant Dev"
   deploy_tenant_test:
     name: Deploy Tenant - Test
     needs: deploy_internal_test
     environment: 
       name: tenant-test
-      steps:
-        - name: Deploy Tenant Test
-        - run: echo "Tenant Test"
+    steps:
+      - name: Deploy Tenant Test
+        run: echo "Tenant Test"
   deploy_tenant_prod:
     name: Deploy Tenant - Prod
     needs: [deploy_tenant_dev, deploy_tenant_test]
     environment: 
       name: tenant-prod
-      steps:
-        - name: Deploy Tenant Prod
-        - run: echo "Tenant Prod"
+    steps:
+      - name: Deploy Tenant Prod
+        run: echo "Tenant Prod"
